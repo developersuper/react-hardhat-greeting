@@ -1,0 +1,43 @@
+require("@nomiclabs/hardhat-waffle");
+
+// This is a sample Hardhat task. To learn how to create your own go to
+// https://hardhat.org/guides/create-task.html
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
+
+// You need to export an object to set up your config
+// Go to https://hardhat.org/config/ to learn more
+
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
+module.exports = {
+  solidity: "0.8.4",
+  // defaultNetwork: "rinkeby",
+  network: {
+    hardhat: {
+      chainId: 1337
+    },
+    // hardhat: {
+    //   forking: {
+    //     url: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+    //   }
+    // },
+    // rinkeby: {
+    //   url: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+    //   // accounts: ["35bd7b604364295b2c4c81d40a2c1b6fc80cc04e96abd2e3cec874b831314f3e"]
+    //   accounts: ["7e225dfcc40c355a7cf4a34cf198be44b9c58c560a7becf3cda5c726d8ad8efa"]
+    // }
+  },
+  paths: {
+    artifacts: './src/artifacts',
+  },
+  etherscan: {
+    apiKey: "12IKYJ1C97KRAW3CAYA1ND334J8XUQKRRU"
+  }
+};
